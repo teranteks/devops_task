@@ -37,9 +37,41 @@ CMD [ "python3", "./app.py"]
 
 5. The next step was to test the image. I created a container with this command ```docker run -d --name python_app -p 5000:5000 teranteks/test_task_python_webserver:v1``` and made requests to test functionality of app.py. After success pushed it to dockerhub repo ```docker push teranteks/test_task_python_webserver:v1```
 
-6. I pulled image from dockerhub repo (**It is public repo, check url: https://hub.docker.com/r/teranteks/test_task_python_webserver**). Run ```docker run -d --name python_app -p 5000:5000 teranteks/test_task_python_webserver:v1``` command again and check, how everything works.
+6. I pulled image from dockerhub repo (**It is public repo, check url: https://hub.docker.com/r/teranteks/test_task_python_webserver .**). Run ```docker run -d --name python_app -p 5000:5000 teranteks/test_task_python_webserver:v1``` command again and check, how everything works.
 
 **Docker Container/Images:**
 ![docker](./result_screens/running_docker_container_and_images.png)
 
 ### **The responses from the server are the same as in step 2. Check that step.**
+
+---
+
+## **Helm Chart**
+1. Create cluster by ```minikube start --cpus=4 --memory=4gb --disk-size=20gb``` 
+![cluster_create](./result_screens/creation_cluster.png)
+2. Then, I created a helm chart named **"WebServer_Helm"** with files like Chart.yaml, values.yaml and folder with autoscaling.yaml, deployment.yaml, service.yaml. As you can see, I set **HorizontalPodAutoscaler**, to decrease the chances of downtime (or minimize it).
+
+3. Run command ```helm install app WebServer_Helm/```, and deployment, service, autoscaling is created by one command, because of Helm Chart.
+![helm_install](./result_screens/helm_install.png)
+4. Here you can see **working cluster, deployment etc...**
+# k8s deploy:
+![deploy](./result_screens/miniube_commands_deploy.png)
+
+# k8s hpa:
+![hpa](./result_screens/miniube_commands_hpa.png)
+
+# k8s pods:
+![pods](./result_screens/miniube_commands_pods.png)
+
+# k8s svc:
+![svc](./result_screens/miniube_commands_svc.png)
+
+# Responses:
+![200response](./result_screens/minikube_response_200.png)
+
+![404_0response](./result_screens/minikube_response_404_0.png)
+
+![404_1response](./result_screens/minikube_response_404_1.png)
+
+# **All values, vars were deployed for demonstration; in other cases they will be in .gitignore file.**
+

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-of-python-app-{{ .Release.Name }}
+  labels:
+    app: k8s-deployment-app-{{ .Release.Name }} 
+
+spec:
+  replicas: {{ .Values.replicasCount }}
+  selector:
+    matchLabels:
+      project: k8s-app-{{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        project: k8s-app-{{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Values.containers.name }}-{{ .Release.Name }}
+          image: {{ .Values.containers.image }}
+          ports:
+            - containerPort: {{ .Values.containers.ports }}

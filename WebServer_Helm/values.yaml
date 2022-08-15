@@ -1,0 +1,21 @@
+# Default values for WebServer_Helm
+
+#Container settings
+containers:
+  name: k8s-app-web
+  image: teranteks/test_task_python_webserver:v1
+  ports: 5000
+
+#Count of replicas
+replicasCount: 1
+
+#Service vars
+svc_port: 5000
+svc_target_port: 5000
+
+
+autoscaling:
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+

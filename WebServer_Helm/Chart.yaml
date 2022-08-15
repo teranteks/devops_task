@@ -1,0 +1,9 @@
+apiVersion: v2
+name: WebServer_HelmChart
+description: Helm chart for deploying mini web-server in Kubernetes
+type: application
+version: 0.1.0 #Helm Chart version
+appVersion: "1.0.0" # Version of deployed application
+
+maintainers:
+  - name: Teranteks
